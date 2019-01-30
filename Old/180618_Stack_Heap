@@ -1,0 +1,37 @@
+Stack
+1. New variables pushed onto the stack
+2. When a function exits, all those variables are freed
+3. Can't call two functions at the same time w/out multi-threading (not doing in this class)
+
+
+Since Stack is cleared after function run, must save data somewhere
+Return values, save in array, etc.
+	OR: can put in heap (borrowing memory)
+heap : 
+If you want to resize array, put on heap
+chars in main, can stay there
+If we are returning to the calling function, heap is best
+
+Heap grows but never shrinks!
+
+Malloc - can get pointer to a memory block
+ request right amount, plus a few bytes
+
+
+Null pointer means it doesn't really point to anything
+realloc - like malloc when p = 0.
+
+calloc - initializes to 0, and returns pointer to 
+
+rand() returns a random int
+
+REVIEW: casting in C !!! /typecasting
+	malloc /realloc/calloc
+	memory leak (meaning)
+	printf, scanf formatting
+	
+
+
+#include <stdio.h>void overflowStack1 () {int a[10000000];a[100] = 1;}void overflowStack2 () {overflowStack2();}void exploreStack(char c, int n, double m, int o) {int* pn = &n; //pointer to ndouble* pm = &m;  //pointer to mint* po = &o; // pointer to ochar* pc = &c;// print out pointers of data on stackprintf("c  is @%p, n  is @%p, m is@%p,   o  is @%p\n", pc, pn, pm, po);printf("pn is @%p, pm is @%p, po is @%p, pc is @%p\n", &pn, &pm, &po, &pc);}int main() {// overflowStack1();// overflowStack2();exploreStack('a', 1, 2.0, 3);double list [3] = {1.0, 2.0, 3.2};printf("list[0-2] is @ %p, @%p, @%p\n", list, list+1, list+2);double list2 [4] = {5.0, 5.1, 5.2, 5.3};printf("list[-1] is %g\n", list[-1]);// A: 5.3// B: 5.0// C: 3// D: Other/junk// E: Errorreturn 0;}
+
+
